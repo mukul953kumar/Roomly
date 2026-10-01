@@ -1,0 +1,16 @@
+{
+  "name": "roomly-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Roomly (LiveTogether) — Mode-based live social and collaboration platform",
+  "scripts": {
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "dev": "concurrently -n \"BACKEND,FRONTEND\" -c \"blue,green\" \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "install:all": "npm install && npm --prefix backend install && npm --prefix frontend install",
+    "build:frontend": "npm --prefix frontend run build"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}
