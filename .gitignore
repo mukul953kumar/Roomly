@@ -26,3 +26,9 @@ logs
 Thumbs.db
 .vscode/
 .idea/
+
+# Internal Project Planning & Rules Documentation (Private)
+[Pp][Rr][Dd].md
+[Rr][Uu][Ll][Ee][Ss].md
+[Pp][Hh][Aa][Ss][Ee].md
+*.md.bak
