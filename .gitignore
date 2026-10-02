@@ -32,3 +32,6 @@ Thumbs.db
 [Rr][Uu][Ll][Ee][Ss].md
 [Pp][Hh][Aa][Ss][Ee].md
 *.md.bak
+
+# Agent & MCP Secrets
+.agents/mcp_config.json
