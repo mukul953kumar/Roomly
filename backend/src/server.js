@@ -2,6 +2,9 @@ import express from "express";
 import cors from "cors";
 import { config } from "./config/index.js";
 import { connectDatabase, disconnectDatabase } from "./config/db.js";
+import ApiResponse from "./utils/ApiResponse.js";
+import notFoundHandler from "./middlewares/notFoundHandler.js";
+import errorHandler from "./middlewares/errorHandler.js";
 import healthRouter from "./routes/health.routes.js";
 
 const app = express();
@@ -19,13 +22,24 @@ app.use(express.urlencoded({ extended: true }));
 // Base routes
 app.use("/api/health", healthRouter);
 
-// Root fallback route
+// Root informational endpoint
 app.get("/", (req, res) => {
-  res.status(200).json({
-    message: "Roomly API is running. People don't join a meeting; they join an activity.",
-    healthCheck: "/api/health",
-  });
+  new ApiResponse(
+    200,
+    {
+      service: "roomly-backend",
+      docs: "/api/health",
+      intent: "People don't join a meeting; they join an activity.",
+    },
+    "Roomly API gateway is active"
+  ).send(res);
 });
+
+// Catch-all 404 handler for undefined routes
+app.use(notFoundHandler);
+
+// Centralized global error handling middleware
+app.use(errorHandler);
 
 // Initialize database connection
 await connectDatabase();
